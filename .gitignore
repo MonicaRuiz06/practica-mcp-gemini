@@ -1,0 +1,14 @@
+# Entorno virtual
+env_mcp/
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Configuración local del editor
+.vscode/
+
+# Secretos
+.env

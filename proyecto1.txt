@@ -1,0 +1,3 @@
+Nombre del proyecto: Desarrollo de IA
+Responsable: Carlos Ruiz
+Fecha de inicio: 15 de marzo de 2024
