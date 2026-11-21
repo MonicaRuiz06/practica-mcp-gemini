@@ -1,4 +1,5 @@
 import asyncio
+import os
 import sys
 from google import genai
 from google.genai import types
@@ -7,6 +8,11 @@ from mcp.client.stdio import (stdio_client, StdioServerParameters)
 
 # Evita que model_copy falle al intentar clonar las tareas asíncronas de la sesión MCP
 ClientSession.__deepcopy__ = lambda self, memo: self
+
+# Carpeta del proyecto y carpeta donde el agente crea y lee sus archivos
+CARPETA_PROYECTO = os.path.dirname(os.path.abspath(__file__))
+CARPETA_PRUEBAS = os.path.join(CARPETA_PROYECTO, "archivos_prueba")
+os.makedirs(CARPETA_PRUEBAS, exist_ok=True)
 
 
 # FUNCIÓN PRINCIPAL
@@ -22,11 +28,13 @@ async def generate():
     # Un StdioServerParameters por cada servidor MCP
     params_archivos = StdioServerParameters(
         command=sys.executable,
-        args=["mi_servidor_mcp.py"],
+        args=[os.path.join(CARPETA_PROYECTO, "mi_servidor_mcp.py")],
+        cwd=CARPETA_PRUEBAS,  # ambos servidores trabajan dentro de archivos_prueba
     )
     params_excel = StdioServerParameters(
         command=sys.executable,
-        args=["servidor_excel_mcp.py"],
+        args=[os.path.join(CARPETA_PROYECTO, "servidor_excel_mcp.py")],
+        cwd=CARPETA_PRUEBAS,
     )
 
     # CONEXIÓN MCP: se abre una conexión y una sesión por servidor

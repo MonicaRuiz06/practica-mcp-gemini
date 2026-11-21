@@ -12,8 +12,7 @@ archivos de Excel. Gracias al sistema de chat de la SDK, el agente mantiene memo
 | `servidor_excel_mcp.py` | Servidor MCP de Excel (openpyxl): crear libro, leer hoja, escribir celda, agregar filas, listar hojas, crear hoja y listar `.xlsx`. Los errores (archivo u hoja inexistente, celda inválida) se devuelven con mensajes claros. |
 | `chat_ia.py` | Chat con Gemini conectado al servidor de archivos (Partes 1–4). |
 | `chat_dos_servidores.py` | Chat con Gemini conectado a los dos servidores a la vez (Parte 5, reto). |
-| `archivos_prueba/` | Carpeta de prueba. |
-| `*.txt`, `*.xlsx` | Archivos generados por el agente durante las pruebas. |
+| `archivos_prueba/` | Carpeta de trabajo del agente: aquí se crean y leen los `.txt` y `.xlsx`. Contiene los archivos generados durante las pruebas. |
 
 ## Instalación
 
@@ -30,7 +29,8 @@ Obtén una API key en [Google AI Studio](https://aistudio.google.com/apikey) y r
 
 ## Uso
 
-Ejecuta los scripts desde esta carpeta:
+Ejecuta los scripts (funcionan desde cualquier carpeta; los servidores MCP se inician con
+`archivos_prueba/` como directorio de trabajo):
 
 ```powershell
 python chat_ia.py              # Partes 1–4: servidor de archivos
